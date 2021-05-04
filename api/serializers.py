@@ -7,6 +7,7 @@ class ClientSerializer(serializers.ModelSerializer):
         fields= ['id', 'name']
 
 class ProjectSerializer(serializers.ModelSerializer):
+    client = ClientSerializer(read_only=True)
     class Meta:
         model= Project
         fields= ['id', 'title', 'client']
