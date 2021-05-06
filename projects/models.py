@@ -9,8 +9,15 @@ class Client(models.Model):
 
 class Status(models.Model):
     name = models.CharField(max_length=128, unique=True)
+    order = models.IntegerField(default=1)
+    icontext = models.CharField(max_length=128, default="icontext")
+    subtext = models.CharField(max_length=128, default="text")
+
+    class Meta:
+        ordering = ["order"]
+
     def __str__(self):
-        return str(self.name)
+        return (str(self.order) + " - "+ self.name)
 
 class Project(models.Model):
     title = models.CharField(max_length=128)

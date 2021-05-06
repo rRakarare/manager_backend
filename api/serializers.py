@@ -9,7 +9,7 @@ class ClientSerializer(serializers.ModelSerializer):
 class StatusSerializer(serializers.ModelSerializer):
     class Meta:
         model= Status
-        fields= ['id', 'name']
+        fields= ['id', 'name', 'icontext','subtext', 'order']
 
 class ProjectSerializer(serializers.ModelSerializer):
     client = ClientSerializer(read_only=True)
