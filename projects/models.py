@@ -21,6 +21,7 @@ class Status(models.Model):
 
 class Project(models.Model):
     title = models.CharField(max_length=128)
+    project_number = models.CharField(max_length=128, default="none")
     client = models.ForeignKey(Client, null=True, on_delete=models.SET_NULL)
     status = models.ForeignKey(Status, null=True, on_delete=models.SET_NULL)
     created_by = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
@@ -28,4 +29,10 @@ class Project(models.Model):
 
     def __str__(self):
         return str(self.title + " - " + self.client.name)
+
+class Invoice(models.Model):
+    title = models.CharField(max_length=256)
+    invoice_number = models.CharField(max_length=128)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
 
