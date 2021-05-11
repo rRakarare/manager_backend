@@ -35,4 +35,6 @@ class Invoice(models.Model):
     invoice_number = models.CharField(max_length=128)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
+    sent = models.BooleanField(default=False)
+    got = models.BooleanField(default=False)
 

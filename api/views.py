@@ -32,3 +32,9 @@ class InvoiceViewSingle(generics.ListAPIView):
         queryset = Invoice.objects.filter(project=project_id)
         return queryset
 
+class InvoiceView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = InvoiceSerializer
+    queryset = Invoice.objects.all()
+
+
+
