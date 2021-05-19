@@ -30,12 +30,17 @@ class Project(models.Model):
     def __str__(self):
         return str(self.title + " - " + self.client.name)
 
+class InvoiceStatus(models.Model):
+    name = models.CharField(max_length=128)
+    def __str__(self):
+        return str(self.name)
+
 class Invoice(models.Model):
     title = models.CharField(max_length=256)
     invoice_number = models.CharField(max_length=128)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     date_of_payment = models.DateTimeField(auto_now=True)
-    sent = models.BooleanField(default=False)
-    got = models.BooleanField(default=False)
+    date_of_invoicing = models.DateTimeField(auto_now=True)
+    status = models.ForeignKey(InvoiceStatus, null=True, on_delete=models.SET_NULL)
 

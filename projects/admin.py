@@ -20,5 +20,6 @@ class ProjektAdmin(admin.ModelAdmin):
 admin.site.register(Status)
 
 
+admin.site.register(InvoiceStatus)
 admin.site.register(Invoice)
 
