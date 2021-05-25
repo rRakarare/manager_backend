@@ -21,7 +21,11 @@ class Status(models.Model):
 
 class Project(models.Model):
     title = models.CharField(max_length=128)
-    project_number = models.CharField(max_length=128, default="none")
+    project_number = models.CharField(unique=True, max_length=128, default="none")
+    place = models.CharField(max_length=128, null=True, default="none")
+    street = models.CharField(max_length=128, null=True, default="none")
+    plz = models.CharField(max_length=128, null=True, default="none")
+    contact = models.CharField(max_length=128, null=True, default="none")
     client = models.ForeignKey(Client, null=True, on_delete=models.SET_NULL)
     status = models.ForeignKey(Status, null=True, on_delete=models.SET_NULL)
     created_by = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
@@ -32,15 +36,21 @@ class Project(models.Model):
 
 class InvoiceStatus(models.Model):
     name = models.CharField(max_length=128)
+    order = models.IntegerField(default=1)
+    icontext = models.CharField(max_length=128, default="icontext")
+    
+    class Meta:
+        ordering = ["order"]
+
     def __str__(self):
-        return str(self.name)
+        return (str(self.order) + " - "+ self.name)
 
 class Invoice(models.Model):
     title = models.CharField(max_length=256)
     invoice_number = models.CharField(max_length=128)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    date_of_payment = models.DateTimeField(auto_now=True)
-    date_of_invoicing = models.DateTimeField(auto_now=True)
+    date_of_payment = models.DateTimeField(null=True, blank=True)
+    date_of_invoicing = models.DateTimeField(null=True, blank=True)
     status = models.ForeignKey(InvoiceStatus, null=True, on_delete=models.SET_NULL)
 

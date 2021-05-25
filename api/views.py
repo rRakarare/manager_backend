@@ -23,7 +23,7 @@ class ProjectPutView(generics.RetrieveUpdateAPIView):
     serializer_class = ProjectSerializerPut
     queryset = Project.objects.all()
 
-class InvoiceViewSingle(generics.ListAPIView):
+class InvoiceViewSingle(generics.ListCreateAPIView):
     serializer_class = InvoiceSerializer
     queryset = Invoice.objects.all()
 

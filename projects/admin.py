@@ -1,4 +1,5 @@
 from django.contrib import admin
+from .djangocsv import ExportCsvMixin
 from .models import *
 
 admin.site.register(Client)
@@ -16,8 +17,10 @@ class ProjektAdmin(admin.ModelAdmin):
             summe = summe + invoice.amount
         return summe
 
+@admin.register(Status)
+class StatusAdmin(admin.ModelAdmin, ExportCsvMixin):
+    actions = ["export_as_csv"]    
 
-admin.site.register(Status)
 
 
 admin.site.register(InvoiceStatus)
