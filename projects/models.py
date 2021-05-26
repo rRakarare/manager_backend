@@ -1,8 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
+
+def upload_to(instance, filename):
+    return 'clients/{filename}'.format(filename=filename)
 
 class Client(models.Model):
     name = models.CharField(max_length=128, unique=True)
+    image = models.ImageField(
+        _("Image"), upload_to=upload_to, default='clients/default.jpg')
 
     def __str__(self):
         return str(self.name)
@@ -21,11 +27,11 @@ class Status(models.Model):
 
 class Project(models.Model):
     title = models.CharField(max_length=128)
-    project_number = models.CharField(unique=True, max_length=128, default="none")
-    place = models.CharField(max_length=128, null=True, default="none")
-    street = models.CharField(max_length=128, null=True, default="none")
-    plz = models.CharField(max_length=128, null=True, default="none")
-    contact = models.CharField(max_length=128, null=True, default="none")
+    project_number = models.CharField(unique=True, max_length=128)
+    place = models.CharField(max_length=128, null=True)
+    street = models.CharField(max_length=128, null=True)
+    plz = models.CharField(max_length=128, null=True)
+    contact = models.CharField(max_length=128, null=True)
     client = models.ForeignKey(Client, null=True, on_delete=models.SET_NULL)
     status = models.ForeignKey(Status, null=True, on_delete=models.SET_NULL)
     created_by = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
@@ -47,7 +53,7 @@ class InvoiceStatus(models.Model):
 
 class Invoice(models.Model):
     title = models.CharField(max_length=256)
-    invoice_number = models.CharField(max_length=128)
+    invoice_number = models.CharField(unique=True, max_length=128)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     date_of_payment = models.DateTimeField(null=True, blank=True)

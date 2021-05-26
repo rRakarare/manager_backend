@@ -4,7 +4,7 @@ from projects.models import Client, Project, Status, Invoice
 class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model= Client
-        fields= ['id', 'name']
+        fields= ['id', 'name', 'image']
 
 class StatusSerializer(serializers.ModelSerializer):
     class Meta:
