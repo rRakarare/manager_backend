@@ -1,0 +1,6 @@
+id,name,order,icontext,subtext
+1,In Aussicht,1,search,Angebotsstatus
+2,Angebot,2,signup,Angebotsunterzeichnung
+3,Bearbeitung,3,play circle,Projekt in Bearbeitung
+4,Rechnung gestellt,4,euro,Letzte Rechnung gestellt
+5,Abgeschlossen,5,flag checkered,Projekt abgeschlossen
