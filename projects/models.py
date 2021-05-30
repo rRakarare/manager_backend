@@ -8,7 +8,7 @@ def upload_to(instance, filename):
 class Client(models.Model):
     name = models.CharField(max_length=128, unique=True)
     image = models.ImageField(
-        _("Image"), upload_to=upload_to, default='clients/default.jpg')
+        _("Image"), upload_to=upload_to, default='clients/default.png')
 
     def __str__(self):
         return str(self.name)
