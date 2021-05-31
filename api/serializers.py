@@ -17,7 +17,12 @@ class ProjectSerializer(serializers.ModelSerializer):
     status = StatusSerializer(read_only=True)
     class Meta:
         model= Project
-        fields= ['id', 'title', 'client', 'status', 'created_at']
+        fields= ['id', 'title', 'project_number', 'client', 'status', 'created_at']
+
+class AddProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Project
+        fields= ['id', 'title', 'project_number', 'client', 'status', 'place', 'created_by']
 
 class ProjectSerializerPut(serializers.ModelSerializer):
     client = ClientSerializer(read_only=True)

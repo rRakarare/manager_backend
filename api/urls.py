@@ -1,6 +1,6 @@
 from rest_framework import routers
 from django.urls import path
-from .views import ClientViewSet, ProjectViewSet, StatusViewSet, ProjectList, ProjectPutView, InvoiceViewSingle, InvoiceView, PostClient
+from .views import ClientViewSet, ProjectViewSet, StatusViewSet, ProjectList, ProjectPutView, InvoiceViewSingle, InvoiceView, PostClient, AddProject
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -29,6 +29,7 @@ urlpatterns = [
     path('token', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),  
     path('projects/', ProjectList.as_view(), name='projects'),
+    path('addProject/', AddProject.as_view(), name='addProjects'),
     path('kunden/', PostClient.as_view(), name='kunden'),
     path('invoices/', InvoiceViewSingle.as_view(), name='invoices'),
     path('invoices/<int:pk>', InvoiceView.as_view(), name='invoice'),
