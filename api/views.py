@@ -2,8 +2,8 @@ from rest_framework import viewsets, generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
-from .serializers import ClientSerializer, AddProjectSerializer, ProjectSerializer, StatusSerializer, ProjectSerializerPut, InvoiceSerializer
-from projects.models import Client, Project, Status, Invoice
+from .serializers import ClientSerializer, AddProjectSerializer, ProjectSerializer, StatusSerializer, ProjectSerializerPut, InvoiceSerializer, ProjectTypeSerializer
+from projects.models import Client, Project, Status, Invoice, ProjectType
 
 class StatusViewSet(viewsets.ModelViewSet):
     serializer_class = StatusSerializer
@@ -12,10 +12,14 @@ class StatusViewSet(viewsets.ModelViewSet):
 class ClientViewSet(viewsets.ModelViewSet):
     serializer_class = ClientSerializer
     queryset = Client.objects.all()
+    
+class ClientViewSet(viewsets.ModelViewSet):
+    serializer_class = ClientSerializer
+    queryset = Client.objects.all()
 
-class ProjectViewSet(viewsets.ModelViewSet):
-    serializer_class = ProjectSerializer
-    queryset = Project.objects.all()
+class ProjectTypeViewSet(viewsets.ModelViewSet):
+    serializer_class = ProjectTypeSerializer
+    queryset = ProjectType.objects.all()
 
 class ProjectList(generics.ListCreateAPIView):
     serializer_class = ProjectSerializer
@@ -29,7 +33,6 @@ class AddProject(generics.ListCreateAPIView):
         data = request.data
         print(request.user)
         data["created_by"] = request.user.id
-        print(data)
         serializer = AddProjectSerializer(data=data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)

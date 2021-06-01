@@ -4,6 +4,7 @@ from import_export.admin import ImportExportModelAdmin
 from .models import *
 
 admin.site.register(Client)
+admin.site.register(ProjectType)
 
 class ProjectResource(resources.ModelResource):
     class Meta:
@@ -43,4 +44,5 @@ admin.site.register(Status, StatusAdmin)
 
 admin.site.register(InvoiceStatus)
 admin.site.register(Invoice)
+
 

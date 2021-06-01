@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
 from django.utils.translation import gettext_lazy as _
 
 def upload_to(instance, filename):
@@ -7,6 +8,7 @@ def upload_to(instance, filename):
 
 class Client(models.Model):
     name = models.CharField(max_length=128, unique=True)
+    short = models.CharField(max_length=5, default="none")
     image = models.ImageField(
         _("Image"), upload_to=upload_to, default='clients/default.png')
 
@@ -25,9 +27,19 @@ class Status(models.Model):
     def __str__(self):
         return (str(self.order) + " - "+ self.name)
 
+class ProjectType(models.Model):
+    name = models.CharField(max_length=128, unique=True)
+    short = models.CharField(max_length=4, unique=True)
+    
+    def __str__(self):
+        return str(self.name)
+
+
+
 class Project(models.Model):
     title = models.CharField(max_length=128)
     project_number = models.CharField(unique=True, max_length=128)
+    project_type = models.ForeignKey(ProjectType, null=True, on_delete=models.SET_NULL)
     place = models.CharField(max_length=128, null=True)
     street = models.CharField(max_length=128, null=True)
     plz = models.CharField(max_length=128, null=True)
@@ -36,6 +48,10 @@ class Project(models.Model):
     status = models.ForeignKey(Status, null=True, on_delete=models.SET_NULL)
     created_by = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        self.project_number = datetime.date.today().strftime("%y") + "-" + self.client.short + self.project_type.short + "-"
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return str(self.title)
