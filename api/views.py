@@ -41,7 +41,7 @@ class AddProject(generics.ListCreateAPIView):
 
 
 
-class ProjectPutView(generics.RetrieveUpdateAPIView):
+class ProjectPutView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProjectSerializerPut
     queryset = Project.objects.all()
 

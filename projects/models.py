@@ -37,6 +37,7 @@ class ProjectType(models.Model):
 
 
 class Project(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=128)
     project_number = models.CharField(unique=True, max_length=128)
     project_type = models.ForeignKey(ProjectType, null=True, on_delete=models.SET_NULL)
@@ -49,9 +50,13 @@ class Project(models.Model):
     created_by = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def update_model(self):
+        number = datetime.date.today().strftime("%y") + "-" + self.project_type.short + "-" + self.client.short + "-" + str(6000+self.id)
+        Project.objects.filter(id=self.id).update(project_number=number)
+
     def save(self, *args, **kwargs):
-        self.project_number = datetime.date.today().strftime("%y") + "-" + self.client.short + self.project_type.short + "-"
         super().save(*args, **kwargs)
+        self.update_model()
 
     def __str__(self):
         return str(self.title)
