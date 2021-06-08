@@ -1,11 +1,16 @@
 from rest_framework import serializers
-from projects.models import Client, Project, Status, Invoice, ProjectType
+from projects.models import Client, Project, Status, Invoice, ProjectType, Artikel
+
+class ArtikelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Artikel
+        fields= ['id', 'nominativ']
 
 class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model= Client
-        fields= ['id', 'name', 'short', 'image']
-        extra_kwargs = {'short' : {'required':True}}
+        fields= ['id', 'name', 'artikel', 'image']
+        extra_kwargs = {'artikel' : {'required':True}}
 
 class StatusSerializer(serializers.ModelSerializer):
     class Meta:
@@ -38,7 +43,12 @@ class ProjectSerializerPut(serializers.ModelSerializer):
     client = ClientSerializer(read_only=True)
     class Meta:
         model= Project
-        fields= ['id', 'title', 'client', 'status', 'created_at']
+        fields= ['id', 'title', 'client', 'status', 'created_at', 'place', 'plz', 'street', 'contact']
+
+class UpdateProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Project
+        fields= ['id', 'title', 'client', 'status', 'created_at', 'place', 'plz', 'street', 'contact']
 
 class InvoiceSerializer(serializers.ModelSerializer):
     class Meta:
