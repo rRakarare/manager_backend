@@ -91,7 +91,18 @@ class Invoice(models.Model):
     invoice_number = models.CharField(unique=True, max_length=128)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    date_of_payment = models.DateTimeField(null=True, blank=True)
-    date_of_invoicing = models.DateTimeField(null=True, blank=True)
+    date_of_payment = models.DateField(null=True, blank=True)
+    date_of_invoicing = models.DateField(null=True, blank=True)
     status = models.ForeignKey(InvoiceStatus, null=True, on_delete=models.SET_NULL)
+
+    def update_model(self):
+        number = "RN" + "-" + datetime.date.today().strftime("%y") + "-" + str(6000+self.id)
+        Invoice.objects.filter(id=self.id).update(invoice_number=number)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.update_model()
+
+    def __str__(self):
+        return str(self.title)
 
