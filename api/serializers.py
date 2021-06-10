@@ -48,7 +48,7 @@ class ProjectSerializerPut(serializers.ModelSerializer):
     client = ClientSerializer(read_only=True)
     class Meta:
         model= Project
-        fields= ['id', 'title', 'client', 'status', 'created_at', 'place', 'plz', 'street', 'contact']
+        fields= ['id', 'title', 'project_number', 'client', 'status', 'created_at', 'place', 'plz', 'street', 'contact']
 
 class UpdateProjectSerializer(serializers.ModelSerializer):
     class Meta:

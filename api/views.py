@@ -57,6 +57,10 @@ class ProjectUpdateView(generics.RetrieveUpdateAPIView):
     serializer_class = UpdateProjectSerializer
     queryset = Project.objects.all()
 
+class InvoiceAll(generics.ListCreateAPIView):
+    serializer_class = InvoiceSerializer
+    queryset = Invoice.objects.all()
+
 class InvoiceViewSingle(generics.ListCreateAPIView):
     serializer_class = InvoiceSerializer
     queryset = Invoice.objects.all()
