@@ -59,6 +59,7 @@ class Project(models.Model):
     street = models.CharField(max_length=128, null=True)
     plz = models.CharField(max_length=128, null=True)
     contact = models.CharField(max_length=128, null=True)
+    part = models.CharField(max_length=128, null=True)
     client = models.ForeignKey(Client, null=True, on_delete=models.SET_NULL)
     status = models.ForeignKey(Status, null=True, on_delete=models.SET_NULL)
     created_by = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
