@@ -3,9 +3,43 @@ from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from .models import *
 
-admin.site.register(Artikel)
-admin.site.register(Client)
-admin.site.register(ProjectType)
+class ArtikelResource(resources.ModelResource):
+    class Meta:
+        model = Artikel
+        skip_unchanged = True
+        report_skipped = False
+
+class ArtikelAdmin(ImportExportModelAdmin):
+    resource_class = ArtikelResource
+    list_display = ('nominativ', 'order')
+
+admin.site.register(Artikel, ArtikelAdmin)
+
+
+class ClientResource(resources.ModelResource):
+    class Meta:
+        model = Client
+        skip_unchanged = True
+        report_skipped = False
+
+class ClientAdmin(ImportExportModelAdmin):
+    resource_class = ClientResource
+    list_display = ('name', 'image')
+
+admin.site.register(Client, ClientAdmin)
+
+class ProjectTypeResource(resources.ModelResource):
+    class Meta:
+        model = ProjectType
+        skip_unchanged = True
+        report_skipped = False
+
+class ProjectTypeAdmin(ImportExportModelAdmin):
+    resource_class = ProjectTypeResource
+    list_display = ('name', 'short')
+
+
+admin.site.register(ProjectType, ProjectTypeAdmin)
 
 class ProjectResource(resources.ModelResource):
     class Meta:
@@ -41,9 +75,31 @@ class StatusAdmin(ImportExportModelAdmin):
 
 admin.site.register(Status, StatusAdmin)
 
+class InvoiceStatusResource(resources.ModelResource):
+    class Meta:
+        model = InvoiceStatus
+        skip_unchanged = True
+        report_skipped = False
+
+class InvoiceStatusAdmin(ImportExportModelAdmin):
+    resource_class = InvoiceStatusResource
+    list_display = ('name', 'order')
 
 
-admin.site.register(InvoiceStatus)
-admin.site.register(Invoice)
+
+admin.site.register(InvoiceStatus, InvoiceStatusAdmin)
+
+
+class InvoiceResource(resources.ModelResource):
+    class Meta:
+        model = Invoice
+        skip_unchanged = True
+        report_skipped = False
+
+class InvoiceAdmin(ImportExportModelAdmin):
+    resource_class = InvoiceResource
+    list_display = ('invoice_number', 'title', 'amount')
+
+admin.site.register(Invoice, InvoiceAdmin)
 
 
