@@ -3,8 +3,36 @@ from django.contrib.auth.models import User
 import datetime
 from django.utils.translation import gettext_lazy as _
 
-def upload_to(instance, filename):
+def upload_to_client(instance, filename):
     return 'clients/{filename}'.format(filename=filename)
+
+def upload_to_crew(instance, filename):
+    return 'crew/{filename}'.format(filename=filename)
+
+
+class Crew(models.Model):
+    name=models.CharField(max_length=128, unique=True)
+    mail=models.EmailField(max_length=128, unique=True)
+    role=models.CharField(max_length=128, default="Consultant")
+    short=models.CharField(max_length=3, unique=True)
+    mobile=models.CharField(max_length=30, unique=True)
+    order = models.IntegerField(default=1)
+    image = models.ImageField(
+        _("Image"), upload_to=upload_to_crew, default='crew/default.png')
+
+    def __str__(self):
+        return str(self.name)
+
+    class Meta:
+        ordering = ["order"]
+
+class Skill(models.Model):
+    text=models.CharField(max_length=256)
+    crew = models.ForeignKey(Crew, null=True, on_delete=models.SET_NULL)
+
+    class Meta:
+        ordering = ["crew"]
+
 
 class Artikel(models.Model):
     nominativ = models.CharField(max_length=3, unique=True)
@@ -24,7 +52,7 @@ class Client(models.Model):
     name = models.CharField(max_length=128, unique=True)
     artikel = models.ForeignKey(Artikel, null=True, on_delete=models.SET_NULL)
     image = models.ImageField(
-        _("Image"), upload_to=upload_to, default='clients/default.png')
+        _("Image"), upload_to=upload_to_client, default='clients/default.png')
 
     def __str__(self):
         return str(self.name)

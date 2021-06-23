@@ -2,8 +2,8 @@ from rest_framework import viewsets, generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
-from .serializers import ClientSerializer, AddProjectSerializer, ProjectSerializer, StatusSerializer, ProjectSerializerPut, InvoiceSerializer, ProjectTypeSerializer, ArtikelSerializer, UpdateProjectSerializer, InvoiceStatusSerializer
-from projects.models import Client, Project, Status, Invoice, ProjectType, Artikel, InvoiceStatus
+from .serializers import ClientSerializer, AddProjectSerializer, ProjectSerializer, StatusSerializer, ProjectSerializerPut, InvoiceSerializer, ProjectTypeSerializer, ArtikelSerializer, UpdateProjectSerializer, InvoiceStatusSerializer, CrewSerializer, SkillSerializer
+from projects.models import Client, Project, Status, Invoice, ProjectType, Artikel, InvoiceStatus, Crew, Skill
 
 class InvoiceStatusViewSet(viewsets.ModelViewSet):
     serializer_class = InvoiceStatusSerializer
@@ -85,6 +85,15 @@ class PostClient(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CrewAll(generics.ListCreateAPIView):
+    serializer_class = CrewSerializer
+    queryset = Crew.objects.all()
+
+class SkillAll(generics.ListCreateAPIView):
+    serializer_class = SkillSerializer
+    queryset = Skill.objects.all()
 
 
 

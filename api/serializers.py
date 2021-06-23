@@ -1,5 +1,15 @@
 from rest_framework import serializers
-from projects.models import Client, Project, Status, Invoice, ProjectType, Artikel, InvoiceStatus
+from projects.models import Client, Project, Status, Invoice, ProjectType, Artikel, InvoiceStatus, Crew, Skill
+
+class CrewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Crew
+        fields= ['id', 'name', 'image', 'role', 'short', 'mobile', 'mail']
+
+class SkillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Skill
+        fields= ['id', 'text', 'crew']
 
 class InvoiceStatusSerializer(serializers.ModelSerializer):
     class Meta:

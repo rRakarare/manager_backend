@@ -3,6 +3,31 @@ from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 from .models import *
 
+class SkillResource(resources.ModelResource):
+    class Meta:
+        model = Skill
+        skip_unchanged = True
+        report_skipped = False
+
+class SkillAdmin(ImportExportModelAdmin):
+    resource_class = SkillResource
+    list_display = ('text', 'crew')
+
+admin.site.register(Skill, SkillAdmin)
+
+class CrewResource(resources.ModelResource):
+    class Meta:
+        model = Crew
+        skip_unchanged = True
+        report_skipped = False
+
+class CrewAdmin(ImportExportModelAdmin):
+    resource_class = CrewResource
+    list_display = ('name', 'short')
+
+admin.site.register(Crew, CrewAdmin)
+
+
 class ArtikelResource(resources.ModelResource):
     class Meta:
         model = Artikel
