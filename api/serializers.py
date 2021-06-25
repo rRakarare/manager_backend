@@ -19,7 +19,7 @@ class InvoiceStatusSerializer(serializers.ModelSerializer):
 class ArtikelSerializer(serializers.ModelSerializer):
     class Meta:
         model= Artikel
-        fields= ['id', 'nominativ']
+        fields= ['id', 'nominativ', 'genitiv', 'dativ', 'akkusativ']
 
 class ClientSerializer(serializers.ModelSerializer):
     class Meta:
