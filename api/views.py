@@ -21,9 +21,6 @@ class ClientViewSet(viewsets.ModelViewSet):
     serializer_class = ClientSerializer
     queryset = Client.objects.all()
     
-class ClientViewSet(viewsets.ModelViewSet):
-    serializer_class = ClientSerializer
-    queryset = Client.objects.all()
 
 class ProjectTypeViewSet(viewsets.ModelViewSet):
     serializer_class = ProjectTypeSerializer
