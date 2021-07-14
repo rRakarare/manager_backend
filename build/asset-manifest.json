@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/static/js/main.77638a2a.chunk.js",
-    "main.js.map": "/static/js/main.77638a2a.chunk.js.map",
+    "main.js": "/static/js/main.ad4d7e1f.chunk.js",
+    "main.js.map": "/static/js/main.ad4d7e1f.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.d12c7440.js",
     "runtime-main.js.map": "/static/js/runtime-main.d12c7440.js.map",
     "static/css/2.d97c81c1.chunk.css": "/static/css/2.d97c81c1.chunk.css",
-    "static/js/2.4b9e4579.chunk.js": "/static/js/2.4b9e4579.chunk.js",
-    "static/js/2.4b9e4579.chunk.js.map": "/static/js/2.4b9e4579.chunk.js.map",
+    "static/js/2.50c218f6.chunk.js": "/static/js/2.50c218f6.chunk.js",
+    "static/js/2.50c218f6.chunk.js.map": "/static/js/2.50c218f6.chunk.js.map",
     "static/js/3.10aad4c4.chunk.js": "/static/js/3.10aad4c4.chunk.js",
     "static/js/3.10aad4c4.chunk.js.map": "/static/js/3.10aad4c4.chunk.js.map",
     "static/js/4.2eadce28.chunk.js": "/static/js/4.2eadce28.chunk.js",
@@ -17,11 +17,11 @@
     "index.html": "/index.html",
     "static/css/2.d97c81c1.chunk.css.map": "/static/css/2.d97c81c1.chunk.css.map",
     "static/css/main.6dea0f05.chunk.css.map": "/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.4b9e4579.chunk.js.LICENSE.txt": "/static/js/2.4b9e4579.chunk.js.LICENSE.txt",
+    "static/js/2.50c218f6.chunk.js.LICENSE.txt": "/static/js/2.50c218f6.chunk.js.LICENSE.txt",
     "static/js/3.10aad4c4.chunk.js.LICENSE.txt": "/static/js/3.10aad4c4.chunk.js.LICENSE.txt",
     "static/js/4.2eadce28.chunk.js.LICENSE.txt": "/static/js/4.2eadce28.chunk.js.LICENSE.txt",
     "static/js/5.28edf86d.chunk.js.LICENSE.txt": "/static/js/5.28edf86d.chunk.js.LICENSE.txt",
-    "static/media/an_vorlage.21832200.docx": "/static/media/an_vorlage.21832200.docx",
+    "static/media/an_vorlage.330eb221.docx": "/static/media/an_vorlage.330eb221.docx",
     "static/media/semantic.min.css": "/static/media/outline-icons.ddae9b1b.woff",
     "static/media/re_vorlage.0c790b2b.docx": "/static/media/re_vorlage.0c790b2b.docx",
     "static/media/ubc.ebb132ce.svg": "/static/media/ubc.ebb132ce.svg"
@@ -29,8 +29,8 @@
   "entrypoints": [
     "static/js/runtime-main.d12c7440.js",
     "static/css/2.d97c81c1.chunk.css",
-    "static/js/2.4b9e4579.chunk.js",
+    "static/js/2.50c218f6.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.77638a2a.chunk.js"
+    "static/js/main.ad4d7e1f.chunk.js"
   ]
 }
