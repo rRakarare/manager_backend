@@ -1,5 +1,10 @@
 from rest_framework import serializers
-from projects.models import Client, Project, Status, Invoice, ProjectType, Artikel, InvoiceStatus, Crew, Skill
+from projects.models import Client, Project, Status, Invoice, ProjectType, Artikel, InvoiceStatus, Crew, Skill, WordTemplates
+
+class TemplateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= WordTemplates
+        fields= ['id', 'name', 'code', 'template']
 
 class CrewSerializer(serializers.ModelSerializer):
     class Meta:

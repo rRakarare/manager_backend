@@ -9,6 +9,17 @@ def upload_to_client(instance, filename):
 def upload_to_crew(instance, filename):
     return 'crew/{filename}'.format(filename=filename)
 
+def upload_to_template(instance, filename):
+    return 'template/{filename}'.format(filename=filename)
+
+
+class WordTemplates(models.Model):
+    name=models.CharField(max_length=128, unique=True)
+    code=models.CharField(max_length=128, unique=True, blank=True)
+    template=models.FileField(upload_to=upload_to_template)
+
+    def __str__(self):
+        return str(self.name)
 
 class Crew(models.Model):
     name=models.CharField(max_length=128, unique=True)

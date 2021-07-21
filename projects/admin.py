@@ -127,4 +127,4 @@ class InvoiceAdmin(ImportExportModelAdmin):
 
 admin.site.register(Invoice, InvoiceAdmin)
 
-
+admin.site.register(WordTemplates)
