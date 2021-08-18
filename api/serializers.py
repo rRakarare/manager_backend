@@ -29,8 +29,8 @@ class ArtikelSerializer(serializers.ModelSerializer):
 class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model= Client
-        fields= ['id', 'name', 'artikel', 'image']
-        extra_kwargs = {'artikel' : {'required':True}}
+        fields= ['id', 'name', 'short', 'artikel', 'image']
+        extra_kwargs = {'artikel' : {'required':True}, 'short' : {'required':True}}
 
 class StatusSerializer(serializers.ModelSerializer):
     class Meta:

@@ -61,6 +61,7 @@ class Artikel(models.Model):
 
 class Client(models.Model):
     name = models.CharField(max_length=128, unique=True)
+    short = models.CharField(max_length=5, default="A")
     artikel = models.ForeignKey(Artikel, null=True, on_delete=models.SET_NULL)
     image = models.ImageField(
         _("Image"), upload_to=upload_to_client, default='clients/default.png')
@@ -105,7 +106,7 @@ class Project(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def update_model(self):
-        number = datetime.date.today().strftime("%y") + "-" + self.project_type.short + "-" + str(6000+self.id)
+        number = datetime.date.today().strftime("%y") + "-" + self.project_type.short + "-"+ self.client.short + "-" + str(6000+self.id)
         Project.objects.filter(id=self.id).update(project_number=number)
 
     def save(self, *args, **kwargs):
