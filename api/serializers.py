@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from projects.models import Client, Project, Status, Invoice, ProjectType, Artikel, InvoiceStatus, Crew, Skill, WordTemplates
+from projects.models import Client, Project, Status, Invoice, ProjectType, Artikel, InvoiceStatus, Crew, Skill, WordTemplates, InvoiceNumbers
 
 class TemplateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,6 +42,11 @@ class ProjectTypeSerializer(serializers.ModelSerializer):
         model= ProjectType
         fields= ['id', 'name', 'short']
 
+class InvoiceNumbersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= InvoiceNumbers
+        fields= ['id', 'short', 'year', 'number']
+
 
 class ProjectSerializer(serializers.ModelSerializer):
     client = ClientSerializer(read_only=True)
@@ -74,3 +79,7 @@ class InvoiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invoice
         fields = ['id', 'title', 'invoice_number', 'amount', 'date_of_invoicing', 'project', 'status', 'date_of_payment']
+        extra_kwargs = {
+            'invoice_number': {'required': False},
+            'date_of_payment': {'required': True},
+            } 

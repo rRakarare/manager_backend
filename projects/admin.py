@@ -76,6 +76,7 @@ class ProjectAdmin(ImportExportModelAdmin):
     resource_class = ProjectResource
     list_display = ('title', 'client', 'getAmount')
     search_fields = ("title__startswith", )
+    exclude = ('is_created',)
 
     def getAmount(self, obj):
         invoices = Invoice.objects.filter(project=obj)
@@ -128,3 +129,4 @@ class InvoiceAdmin(ImportExportModelAdmin):
 admin.site.register(Invoice, InvoiceAdmin)
 
 admin.site.register(WordTemplates)
+admin.site.register(InvoiceNumbers)

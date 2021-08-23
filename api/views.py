@@ -2,8 +2,8 @@ from rest_framework import viewsets, generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
-from .serializers import ClientSerializer, AddProjectSerializer, ProjectSerializer, StatusSerializer, ProjectSerializerPut, InvoiceSerializer, ProjectTypeSerializer, ArtikelSerializer, UpdateProjectSerializer, InvoiceStatusSerializer, CrewSerializer, SkillSerializer, TemplateSerializer
-from projects.models import Client, Project, Status, Invoice, ProjectType, Artikel, InvoiceStatus, Crew, Skill, WordTemplates
+from .serializers import ClientSerializer, AddProjectSerializer, ProjectSerializer, StatusSerializer, ProjectSerializerPut, InvoiceSerializer, ProjectTypeSerializer, ArtikelSerializer, UpdateProjectSerializer, InvoiceStatusSerializer, CrewSerializer, SkillSerializer, TemplateSerializer, InvoiceNumbersSerializer
+from projects.models import Client, Project, Status, Invoice, ProjectType, Artikel, InvoiceStatus, Crew, Skill, WordTemplates, InvoiceNumbers
 
 
 class TemplateViewSet(viewsets.ModelViewSet):
@@ -34,6 +34,10 @@ class ProjectTypeViewSet(viewsets.ModelViewSet):
 class ProjectList(generics.ListCreateAPIView):
     serializer_class = ProjectSerializer
     queryset = Project.objects.all()
+
+class InvoiceNumberView(viewsets.ModelViewSet):
+    serializer_class = InvoiceNumbersSerializer
+    queryset = InvoiceNumbers.objects.all()
 
 class AddProject(generics.ListCreateAPIView):
     serializer_class = AddProjectSerializer

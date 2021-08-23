@@ -95,23 +95,30 @@ class Project(models.Model):
     title = models.CharField(max_length=128)
     project_number = models.CharField(unique=True, max_length=128)
     project_type = models.ForeignKey(ProjectType, null=True, on_delete=models.SET_NULL)
-    place = models.CharField(max_length=128, null=True)
-    street = models.CharField(max_length=128, null=True)
-    plz = models.CharField(max_length=128, null=True)
-    contact = models.CharField(max_length=128, null=True)
-    part = models.CharField(max_length=128, null=True)
+    place = models.CharField(max_length=128, null=True, blank=True)
+    street = models.CharField(max_length=128, null=True, blank=True)
+    plz = models.CharField(max_length=128, null=True, blank=True)
+    contact = models.CharField(max_length=128, null=True, blank=True)
+    part = models.CharField(max_length=128, null=True, blank=True)
     client = models.ForeignKey(Client, null=True, on_delete=models.SET_NULL)
     status = models.ForeignKey(Status, null=True, on_delete=models.SET_NULL)
     created_by = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True)
+    is_created = models.BooleanField(default=False)
 
     def update_model(self):
         number = datetime.date.today().strftime("%y") + "-" + self.project_type.short + "-"+ self.client.short + "-" + str(6000+self.id)
         Project.objects.filter(id=self.id).update(project_number=number)
 
+    def set_created(self):
+        Project.objects.filter(id=self.id).update(is_created=True)
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.update_model()
+        if self.is_created == False:            
+            self.update_model()
+            self.set_created()
+        
 
     def __str__(self):
         return str(self.title)
@@ -129,21 +136,18 @@ class InvoiceStatus(models.Model):
 
 class Invoice(models.Model):
     title = models.CharField(max_length=256)
-    invoice_number = models.CharField(unique=True, max_length=128)
+    invoice_number = models.CharField(unique=True, max_length=128, null=True, blank=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     date_of_payment = models.DateField(null=True, blank=True)
     date_of_invoicing = models.DateField(null=True, blank=True)
     status = models.ForeignKey(InvoiceStatus, null=True, on_delete=models.SET_NULL)
 
-    def update_model(self):
-        number = "RN" + "-" + datetime.date.today().strftime("%y") + "-" + str(6000+self.id)
-        Invoice.objects.filter(id=self.id).update(invoice_number=number)
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        self.update_model()
 
     def __str__(self):
         return str(self.title)
 
+class InvoiceNumbers(models.Model):
+    short = models.CharField(max_length=4)
+    year = models.IntegerField()
+    number = models.IntegerField()
