@@ -53,7 +53,7 @@ class ProjectSerializer(serializers.ModelSerializer):
     status = StatusSerializer(read_only=True)
     class Meta:
         model= Project
-        fields= ['id', 'title', 'project_number', 'client', 'status', 'created_at']
+        fields= ['id', 'title', 'project_type', 'project_number', 'client', 'status', 'created_at']
 
 class AddProjectSerializer(serializers.ModelSerializer):
     class Meta:
