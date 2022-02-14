@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.2ae47eeb.chunk.css",
-    "main.js": "/static/js/main.228ce69e.chunk.js",
-    "main.js.map": "/static/js/main.228ce69e.chunk.js.map",
+    "main.js": "/static/js/main.b484ad98.chunk.js",
+    "main.js.map": "/static/js/main.b484ad98.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.f911e613.js",
     "runtime-main.js.map": "/static/js/runtime-main.f911e613.js.map",
     "static/css/2.7dce832d.chunk.css": "/static/css/2.7dce832d.chunk.css",
@@ -22,7 +22,7 @@
     "static/js/4.5fb42c98.chunk.js.LICENSE.txt": "/static/js/4.5fb42c98.chunk.js.LICENSE.txt",
     "static/js/5.ce1cde9c.chunk.js.LICENSE.txt": "/static/js/5.ce1cde9c.chunk.js.LICENSE.txt",
     "static/media/semantic.min.css": "/static/media/outline-icons.ddae9b1b.woff",
-    "static/media/re_vorlage.0c790b2b.docx": "/static/media/re_vorlage.0c790b2b.docx",
+    "static/media/re_vorlage.c3457f89.docx": "/static/media/re_vorlage.c3457f89.docx",
     "static/media/sample.99776b0e.svg": "/static/media/sample.99776b0e.svg",
     "static/media/ubc.96206d15.svg": "/static/media/ubc.96206d15.svg"
   },
@@ -31,6 +31,6 @@
     "static/css/2.7dce832d.chunk.css",
     "static/js/2.9a8ba8fb.chunk.js",
     "static/css/main.2ae47eeb.chunk.css",
-    "static/js/main.228ce69e.chunk.js"
+    "static/js/main.b484ad98.chunk.js"
   ]
 }
